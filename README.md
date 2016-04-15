@@ -2,7 +2,7 @@
 
 A tiny script (less than 0.5Kb gzipped) to build accessible content toggles.
 
-You can try the [live demo](http://edenspiekermann.github.io/a11y-toggle/).
+You can try the [live demo which also acts as a documentation](http://edenspiekermann.github.io/a11y-toggle/).
 
 
 ## Install
@@ -49,8 +49,6 @@ See more detailed examples on the [demo page](http://edenspiekermann.github.io/a
 
 * Initial ARIA-specific attributes such as `aria-expanded`, `aria-hidden` and `aria-labelledby`, as well as `id` on the toggle element are being added automatically if not already set.
 * The collapsible content does not have to live right next to the toggle, hence the `aria-controls` attribute in order to provide a shortcut for assistive technologies.
-* The toggle can be something else than a `<button>` however a button is preferred as it the best suited element for such an interactive task.
-
 
 ## Tests
 
