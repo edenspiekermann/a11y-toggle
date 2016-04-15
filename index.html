@@ -25,92 +25,127 @@
 
       <p><strong>No more excuse now. Make your toggles accessible.</strong></p>
       
-      <h2>Basic example</h2>
-      
-      <h3>Markup</h3>
 
-      <p>The bare minimum is a button with the <code>data-a11y-toggle</code> attribute mapped to an existing <code>id</code>.</p>
 
-      <button type="button" data-a11y-toggle="toggle-A">Toggle code »</button>
 
-      <div id="toggle-A">
-        <pre class="language-html"><code>
-&lt;button type="button" data-a11y-toggle="toggle-A">
-  Toggle code »
-&lt;/button>
 
-&lt;div id="toggle-A">
-  Some content…
-&lt;/div>
-        </code></pre>
-      </div>
+      <section>
+        <h2>Basic example</h2>
+        
+        <h3>Markup</h3>
 
-      <h3>CSS</h3>
+        <p>The bare minimum is a button with the <code>data-a11y-toggle</code> attribute mapped to an existing <code>id</code>.</p>
 
-      <p>Only hiding <code>aria-hidden</code> content is strictly necessary. It is also recommended to hide the button when JavaScript is disabled, by checking the presence of the <code>aria-controls</code> attribute for instance.</p>
+        <button type="button" data-a11y-toggle="toggle-A">Toggle code »</button>
 
-      <button type="button" data-a11y-toggle="toggle-B">Toggle code »</button>
+        <div id="toggle-A">
+          <pre class="language-html"><code>
+  &lt;button type="button" data-a11y-toggle="toggle-A">
+    Toggle code »
+  &lt;/button>
 
-      <div id="toggle-B">
-        <pre class="language-css"><code>
-[aria-hidden='true'],
-[data-a11y-toggle]:not([aria-controls]) {
-  display: none;
-}
-        </code></pre>
-      </div>
+  &lt;div id="toggle-A">
+    Some content…
+  &lt;/div>
+          </code></pre>
+        </div>
 
-      <h2>Animation</h2>
+        <h3>CSS</h3>
 
-      <p>Given that a11y-toggle is completely unopinionated regarding the styling layer, it is really up to the developer to implete the sliding and/or fading animation. Here is an example below. Hat tip to <a href="http://a11y.nicolas-hoffmann.net/hide-show/#expand_9">Nicolas Hoffman</a>.</p>
+        <p>Only hiding <code>aria-hidden</code> content is strictly necessary. It is also recommended to hide the button when JavaScript is disabled, by checking the presence of the <code>aria-controls</code> attribute for instance.</p>
 
-      <h3>Markup</h3>
+        <button type="button" data-a11y-toggle="toggle-B">Toggle code »</button>
 
-      <p>The markup does not change compared to the original version except that we add a class to the collapsible sections to be able to target them in CSS.</p>
+        <div id="toggle-B">
+          <pre class="language-css"><code>
+  [aria-hidden='true'],
+  [data-a11y-toggle]:not([aria-controls]) {
+    display: none;
+  }
+          </code></pre>
+        </div>
+      </section>
 
-      <button type="button" data-a11y-toggle="toggle-C">Toggle code »</button>
 
-      <div class="collapsible-box" id="toggle-C">
-        <pre class="language-html"><code>
-&lt;button type="button" data-a11y-toggle="toggle-C">
-  Toggle code »
-&lt;/button>
 
-&lt;div class="collapsible-box" id="toggle-C">
-  Some content…
-&lt;/div>
-        </code></pre>
-      </div>
 
-      <h3>CSS</h3>
 
-      <p>The styles do not rely on <code>display: none</code> anymore but a tricky / hacky combination of declarations to make the magic happen.</p>
+      <section>
+        <h2>Expanded by default</h2>
 
-      <button type="button" data-a11y-toggle="toggle-D">Toggle code »</button>
+        <p>If you want the content to be expanded by default, you can add a <code>data-a11y-toggle-open</code> attribute to the target element (not the toggle itself).</p>
 
-      <div class="collapsible-box" id="toggle-D">
-        <pre class="language-css"><code>
-.collapsible-box {
-  overflow: hidden;
-  opacity: 1;
-  max-height: 80em;
-  visibility: visible;
-  transition:
-    visibility 0s ease,
-    max-height 2s ease,
-    opacity    2s ease;
-  transition-delay: 0s;
-}
+        <p>Note that this is the default behaviour when JavaScript is disabled, so that the content remains accessible even without JavaScript.</p>
 
-.collapsible-box[aria-hidden='true'] {
-  max-height: 0;
-  opacity: 0;
-  visibility: hidden;
-  transition-delay: 2s, 0s, 0s;
-}
-        </code></pre>
-      </div>
+        <button type="button" data-a11y-toggle="toggle-E">Toggle code »</button>
 
+        <div id="toggle-E" data-a11y-toggle-open>
+          <pre class="language-html"><code>
+  &lt;button type="button" data-a11y-toggle="toggle-E">
+    Toggle code »
+  &lt;/button>
+
+  &lt;div id="toggle-E" data-a11y-toggle-open>
+    Some content that is expanded by default…
+  &lt;/div>
+          </code></pre>
+        </div>
+      </section>
+
+
+
+      <section>
+        <h2>Animation</h2>
+
+        <p>Given that a11y-toggle is completely unopinionated regarding the styling layer, it is really up to the developer to implete the sliding and/or fading animation. Here is an example below. Hat tip to <a href="http://a11y.nicolas-hoffmann.net/hide-show/#expand_9">Nicolas Hoffman</a>.</p>
+
+        <h3>Markup</h3>
+
+        <p>The markup does not change compared to the original version except that we add a class to the collapsible sections to be able to target them in CSS.</p>
+
+        <button type="button" data-a11y-toggle="toggle-C">Toggle code »</button>
+
+        <div class="collapsible-box" id="toggle-C">
+          <pre class="language-html"><code>
+  &lt;button type="button" data-a11y-toggle="toggle-C">
+    Toggle code »
+  &lt;/button>
+
+  &lt;div class="collapsible-box" id="toggle-C">
+    Some content…
+  &lt;/div>
+          </code></pre>
+        </div>
+
+        <h3>CSS</h3>
+
+        <p>The styles do not rely on <code>display: none</code> anymore but a tricky / hacky combination of declarations to make the magic happen.</p>
+
+        <button type="button" data-a11y-toggle="toggle-D">Toggle code »</button>
+
+        <div class="collapsible-box" id="toggle-D">
+          <pre class="language-css"><code>
+  .collapsible-box {
+    overflow: hidden;
+    opacity: 1;
+    max-height: 80em;
+    visibility: visible;
+    transition:
+      visibility 0s ease,
+      max-height 2s ease,
+      opacity    2s ease;
+    transition-delay: 0s;
+  }
+
+  .collapsible-box[aria-hidden='true'] {
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition-delay: 2s, 0s, 0s;
+  }
+          </code></pre>
+        </div>
+      </section>
       <footer role="contentinfo">
         &copy;&nbsp;2016 <a href="http://edenspiekermann.com">Edenspiekermann</a>
       </footer>

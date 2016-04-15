@@ -39,6 +39,12 @@ body {
   padding: 2em 0;
 }
 
+section {
+  border-top: 1px solid silver;
+  margin-top: 60px;
+  padding-top: 20px;
+}
+
 h1 {
   font-size: 1.6em;
   line-height: 1.1;
@@ -47,6 +53,7 @@ h1 {
 
 h3::before {
   content: '_';
+  color: #81c784;
 }
 
 a {
