@@ -1,6 +1,6 @@
 # A11y Toggle
 
-A tiny script (less than 0.5Kb gzipped) to build accessible content toggles.
+A tiny script (less than 0.6Kb gzipped) to build accessible content toggles.
 
 You can try the [live demo which also acts as a documentation](http://edenspiekermann.github.io/a11y-toggle/).
 
