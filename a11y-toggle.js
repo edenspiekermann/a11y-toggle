@@ -2,6 +2,8 @@
   'use strict';
 
   var internalId = 0;
+  var togglesMap = {};
+  var targetsMap = {};
 
   function $ (selector) {
     return Array.prototype.slice.call(document.querySelectorAll(selector));
@@ -23,8 +25,21 @@
     return null;
   }
 
-  var togglesMap = {};
-  var targetsMap = {};
+  function handleToggle (toggle) {
+    var target = toggle && targetsMap[toggle.getAttribute('aria-controls')];
+
+    if (!target) {
+      return false;
+    }
+
+    var toggles = togglesMap['#' + target.id];
+    var isExpanded = target.getAttribute('aria-hidden') === 'false';
+
+    target.setAttribute('aria-hidden', isExpanded);
+    toggles.forEach(function (toggle) {
+      toggle.setAttribute('aria-expanded', !isExpanded);
+    });
+  }
 
   document.addEventListener('DOMContentLoaded', function () {
     togglesMap = $('[data-a11y-toggle]').reduce(function (acc, toggle) {
@@ -56,18 +71,15 @@
 
   document.addEventListener('click', function (event) {
     var toggle = getClosestToggle(event.target);
-    var target = toggle && targetsMap[toggle.getAttribute('aria-controls')];
+    handleToggle(toggle);
+  });
 
-    if (!target) {
-      return false;
+  document.addEventListener('keyup', function (event) {
+    if (event.which === 13 || event.which === 32) {
+      var toggle = getClosestToggle(event.target);
+      if (toggle && toggle.getAttribute('role') === 'button') {
+        handleToggle(toggle);
+      }
     }
-
-    var toggles = togglesMap['#' + target.id];
-    var isExpanded = target.getAttribute('aria-hidden') === 'false';
-
-    target.setAttribute('aria-hidden', isExpanded);
-    toggles.forEach(function (toggle) {
-      toggle.setAttribute('aria-expanded', !isExpanded);
-    });
   });
 })();

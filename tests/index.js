@@ -1,5 +1,6 @@
+/* globals describe, it, expect */
+
 describe('Initial setup', function () {
-  var toggle, target;
   var actual, expected;
 
   it('should add `id` attribute to toggle if not set', function () {
@@ -97,6 +98,15 @@ describe('Click events', function () {
 
   it('should work correctly with nested DOM in toggle', function () {
     var toggle = document.querySelector('[data-a11y-toggle="t13"]');
+    toggle.click();
+
+    actual = toggle.getAttribute('aria-expanded');
+    expected = 'true';
+    expect(actual).to.be.equal(expected);
+  });
+
+  it('should work correctly with accessible non-<button> toggle', function () {
+    var toggle = document.querySelector('[data-a11y-toggle="t14"]');
     toggle.click();
 
     actual = toggle.getAttribute('aria-expanded');
