@@ -11,146 +11,204 @@
 
   <body>
     <main class="main" id="main" aria-label="Content">
-      <h1>A11y Toggle</h1>
-
-      <p><a href="https://github.com/edenspiekermann/a11y-toggle">Get the code on GitHub</a></p>
-
-      <p>Pure CSS toggles using the <a href="https://css-tricks.com/the-checkbox-hack/">checkbox hack</a> introduce some usability and accessibility problems.</p>
-
-      <p>For starters, the checkbox hack relies on the <code>:checked</code> pseudo-class, which is <a href="http://quirksmode.org/css/selectors/mobile.html#t60">not supported everywhere</a>. For instance, BlackBerry browser, Opera Mini, Android Stock Browser and Firefox Android (amongst others) do not support this selector, making the whole thing broken.</p>
-
-      <p>On top of that, in order to be fully accessible a content toggle needs some extra attributes that cannot be toggled without JavaScript. The toggle itself needs a <code>aria-controls</code> attribute linking to the expandable element, and a <code>aria-expanded</code> attribute describing its state (expanded or collapsed). The collapsed element itself needs the <code>aria-hidden</code> attribute when invisible.</p>
-
-      <p><a href="https://github.com/edenspiekermann/a11y-toggle">a11y-toggle</a> takes care of all these considerations for you. Initial necessary attributes are being added by the script so you don’t even have to care about this.</p>
-
-      <p><strong>No more excuse now. Make your toggles accessible.</strong></p>
-      
-
-
-
 
       <section>
-        <h2>Basic example</h2>
-        
-        <h3>Markup</h3>
+        <div class="container">
+          <h1 class="title">A11y Toggle</h1>
 
-        <p>The bare minimum is a button with the <code>data-a11y-toggle</code> attribute mapped to an existing <code>id</code>.</p>
+          <p><a href="https://github.com/edenspiekermann/a11y-toggle">Get the code on GitHub</a> or skip to a specific documentation section right away:</p>
 
-        <button type="button" data-a11y-toggle="toggle-A">Toggle code »</button>
+          <ul>
+            <li><a href="#getting-started">Getting started</a></li>
+            <li><a href="#basic-example">Basic example</a></li>
+            <li><a href="#expanded-by-default">Expanded by default</a></li>
+            <li><a href="#non-button-toggles">Non-button toggles</a></li>
+            <li><a href="#multi-toggles">Multi toggles</a></li>
+            <li><a href="#animations">Animations</a></li>
+          </ul>
 
-        <div id="toggle-A">
-          <pre class="language-html"><code>
-  &lt;button type="button" data-a11y-toggle="toggle-A">
-    Toggle code »
-  &lt;/button>
+          <p>Pure CSS toggles using the <a href="https://css-tricks.com/the-checkbox-hack/">checkbox hack</a> introduce some usability and accessibility problems.</p>
 
-  &lt;div id="toggle-A">
-    Some content…
-  &lt;/div>
-          </code></pre>
+          <p>For starters, the checkbox hack relies on the <code>:checked</code> pseudo-class, which is <a href="http://quirksmode.org/css/selectors/mobile.html#t60">not supported everywhere</a>. For instance, BlackBerry browser, Opera Mini, Android Stock Browser and Firefox Android (amongst others) do not support this selector, making the whole thing broken.</p>
+
+          <p>On top of that, in order to be fully accessible a content toggle needs some extra attributes that cannot be toggled without JavaScript. The toggle itself needs a <code>aria-controls</code> attribute linking to the expandable element, and a <code>aria-expanded</code> attribute describing its state (expanded or collapsed). The collapsed element itself needs the <code>aria-hidden</code> attribute when invisible.</p>
+
+          <p><a href="https://github.com/edenspiekermann/a11y-toggle">a11y-toggle</a> takes care of all these considerations for you. Initial necessary attributes are being added by the script so you don’t even have to care about this.</p>
+
+          <p><strong>No more excuse now. Make your toggles accessible.</strong></p>
         </div>
+      </section>
 
-        <h3>CSS</h3>
+      <section id="getting-started">
+        <div class="container">
+          <h2 class="title">Getting started</h2>
 
-        <p>Only hiding <code>aria-hidden</code> content is strictly necessary. It is also recommended to hide the button when JavaScript is disabled, by checking the presence of the <code>aria-controls</code> attribute for instance.</p>
+          <p>To get started, simply include a11y-toggle.js (ideally the minified version, of course) in your document. It can be either in the <code>&lt;head></code> or at the bottom of the <code>&lt;body></code> although the latter the better, for performance reasons.</p>
 
-        <button type="button" data-a11y-toggle="toggle-B">Toggle code »</button>
+          <pre class="language-html"><code>
+&lt;script src="a11y-toggle.min.js" async>&lt;/script>
+          </code></pre>
 
-        <div id="toggle-B">
+          <p>That’s it! There is no need to initialize anything as everything else is being handled by the script itself. Simply check the <a href="#basic-example">next section</a> to see how to declare your toggles.</p>
+        </div>
+      </section>
+
+      <section id="basic-example">
+        <div class="container">
+          <h2 class="title">Basic example</h2>
+          
+          <p>The bare minimum is a button with the <code>data-a11y-toggle</code> attribute mapped to an existing <code>id</code> in the document. You can have a look at the code below.</p>
+
+          <pre class="language-html"><code>
+&lt;button type="button" data-a11y-toggle="target">
+  Toggle code »
+&lt;/button>
+
+&lt;div id="target">
+  Some content…
+&lt;/div>
+          </code></pre>
+
+          <p>On the CSS Side, only hiding <code>aria-hidden</code> content is strictly necessary. It is also recommended to hide the button when JavaScript is disabled, by checking the presence of the <code>aria-controls</code> attribute for instance.</p>
+
           <pre class="language-css"><code>
-  [aria-hidden='true'],
-  [data-a11y-toggle]:not([aria-controls]) {
-    display: none;
-  }
+[aria-hidden='true'],
+[data-a11y-toggle]:not([aria-controls]) {
+  display: none;
+}
           </code></pre>
+
+          <p data-height="191" data-theme-id="0" data-slug-hash="MyVNdN" data-default-tab="result" data-user="HugoGiraudel" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/HugoGiraudel/pen/MyVNdN/">a11y-toggle — Basic example</a> by Hugo Giraudel (<a href="http://codepen.io/HugoGiraudel">@HugoGiraudel</a>) on <a href="http://codepen.io">CodePen</a>.</p>
         </div>
       </section>
 
+      <section id="expanded-by-default">
+        <div class="container">
+          <h2 class="title">Expanded by default</h2>
 
+          <p>If you want the content to be expanded by default, you can add a <code>data-a11y-toggle-open</code> attribute to the target element (not the toggle itself).</p>
 
+          <p>Note that this is the default behaviour when JavaScript is disabled, so that the content remains accessible even without JavaScript.</p>
 
-
-      <section>
-        <h2>Expanded by default</h2>
-
-        <p>If you want the content to be expanded by default, you can add a <code>data-a11y-toggle-open</code> attribute to the target element (not the toggle itself).</p>
-
-        <p>Note that this is the default behaviour when JavaScript is disabled, so that the content remains accessible even without JavaScript.</p>
-
-        <button type="button" data-a11y-toggle="toggle-E">Toggle code »</button>
-
-        <div id="toggle-E" data-a11y-toggle-open>
           <pre class="language-html"><code>
-  &lt;button type="button" data-a11y-toggle="toggle-E">
-    Toggle code »
-  &lt;/button>
+&lt;button type="button" data-a11y-toggle="target">
+  Toggle code »
+&lt;/button>
 
-  &lt;div id="toggle-E" data-a11y-toggle-open>
-    Some content that is expanded by default…
-  &lt;/div>
+&lt;div id="target" data-a11y-toggle-open>
+  Some content that is expanded by default…
+&lt;/div>
           </code></pre>
+        </div>
+
+        <p data-height="191" data-theme-id="0" data-slug-hash="bpvXPQ" data-default-tab="result" data-user="HugoGiraudel" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/HugoGiraudel/pen/bpvXPQ/">a11y-toggle — Expanded by default</a> by Hugo Giraudel (<a href="http://codepen.io/HugoGiraudel">@HugoGiraudel</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+      </section>
+
+      <section id="non-button-toggles">
+        <div class="container">
+          <h2 class="title">Non-button toggles</h2>
+
+          <p>A <code>&lt;button&gt;</code> element is definitely the most suited one for a toggle, however sometimes it might not be possible for whatever reason.</p>
+
+          <p>It is possible to use any other element as a toggle however you must manually specify the following attributes:</p>
+
+          <ul>
+            <li><code>role="button"</code></li>
+            <li><code>tabindex="0"</code></li>
+          </ul>
+
+          <pre class="language-html"><code>
+&lt;span role="button" tabindex="0" data-a11y-toggle="target">
+  Toggle code »
+&lt;/span>
+
+&lt;div id="target">
+  Some content…
+&lt;/div>
+          </code></pre>
+
+          <p data-height="191" data-theme-id="0" data-slug-hash="XdEvvm" data-default-tab="result" data-user="HugoGiraudel" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/HugoGiraudel/pen/XdEvvm/">a11y-toggle — Non-button toggles</a> by Hugo Giraudel (<a href="http://codepen.io/HugoGiraudel">@HugoGiraudel</a>) on <a href="http://codepen.io">CodePen</a>.</p>
         </div>
       </section>
 
+      <section id="multi-toggles">
+        <div class="container">
+          <h2 class="title">Multi toggles</h2>
 
+          <p>A collapsible container can have several toggles able to control its visibility. There is no difference in markup regarding multi toggles.</p>
 
-      <section>
-        <h2>Animation</h2>
-
-        <p>Given that a11y-toggle is completely unopinionated regarding the styling layer, it is really up to the developer to implete the sliding and/or fading animation. Here is an example below. Hat tip to <a href="http://a11y.nicolas-hoffmann.net/hide-show/#expand_9">Nicolas Hoffman</a>.</p>
-
-        <h3>Markup</h3>
-
-        <p>The markup does not change compared to the original version except that we add a class to the collapsible sections to be able to target them in CSS.</p>
-
-        <button type="button" data-a11y-toggle="toggle-C">Toggle code »</button>
-
-        <div class="collapsible-box" id="toggle-C">
           <pre class="language-html"><code>
-  &lt;button type="button" data-a11y-toggle="toggle-C">
-    Toggle code »
-  &lt;/button>
+&lt;button type="button" data-a11y-toggle="target">
+  Toggle code »
+&lt;/button>
 
-  &lt;div class="collapsible-box" id="toggle-C">
-    Some content…
-  &lt;/div>
+&lt;button type="button" data-a11y-toggle="target">
+  Toggle code »
+&lt;/button>
+
+&lt;div id="target">
+  Some content…
+&lt;/div>
           </code></pre>
+
+          <p data-height="191" data-theme-id="0" data-slug-hash="Yqammr" data-default-tab="result" data-user="HugoGiraudel" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/HugoGiraudel/pen/Yqammr/">a11y-toggle — Multi toggles</a> by Hugo Giraudel (<a href="http://codepen.io/HugoGiraudel">@HugoGiraudel</a>) on <a href="http://codepen.io">CodePen</a>.</p>
         </div>
+      </section>
 
-        <h3>CSS</h3>
+      <section id="animations">
+        <div class="container">
+          <h2 class="title">Animations</h2>
 
-        <p>The styles do not rely on <code>display: none</code> anymore but a tricky / hacky combination of declarations to make the magic happen.</p>
+          <p>Given that a11y-toggle is completely unopinionated regarding the styling layer, it is really up to the developer to implete the sliding and/or fading animation. Here is an example below. Hat tip to <a href="http://a11y.nicolas-hoffmann.net/hide-show/#expand_9">Nicolas Hoffman</a>.</p>
 
-        <button type="button" data-a11y-toggle="toggle-D">Toggle code »</button>
+          <p>The markup does not change compared to the original version except that we add a class to the collapsible sections to be able to target them in CSS.</p>
 
-        <div class="collapsible-box" id="toggle-D">
+          <pre class="language-html"><code>
+&lt;button type="button" data-a11y-toggle="target">
+  Toggle code »
+&lt;/button>
+
+&lt;div class="collapsible-box" id="target">
+  Some content…
+&lt;/div>
+          </code></pre>
+
+          <p>The styles do not rely on <code>display: none</code> anymore but a tricky / hacky combination of declarations to make the magic happen.</p>
+
           <pre class="language-css"><code>
-  .collapsible-box {
-    overflow: hidden;
-    opacity: 1;
-    max-height: 80em;
-    visibility: visible;
-    transition:
-      visibility 0s ease,
-      max-height 2s ease,
-      opacity    2s ease;
-    transition-delay: 0s;
-  }
+.collapsible-box {
+  overflow: hidden;
+  opacity: 1;
+  max-height: 80em;
+  visibility: visible;
+  transition:
+    visibility 0s ease,
+    max-height 2s ease,
+    opacity    2s ease;
+  transition-delay: 0s;
+}
 
-  .collapsible-box[aria-hidden='true'] {
-    max-height: 0;
-    opacity: 0;
-    visibility: hidden;
-    transition-delay: 2s, 0s, 0s;
-  }
+.collapsible-box[aria-hidden='true'] {
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition-delay: 2s, 0s, 0s;
+}
           </code></pre>
+
+          <p data-height="191" data-theme-id="0" data-slug-hash="wGmVVY" data-default-tab="result" data-user="HugoGiraudel" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/HugoGiraudel/pen/wGmVVY/">a11y-toggle — Animations</a> by Hugo Giraudel (<a href="http://codepen.io/HugoGiraudel">@HugoGiraudel</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
         </div>
       </section>
+
       <footer role="contentinfo">
-        &copy;&nbsp;2016 <a href="http://edenspiekermann.com">Edenspiekermann</a>
+        <div class="container">
+          &copy;&nbsp;2016 <a href="http://edenspiekermann.com">Edenspiekermann</a>
+        </div>
       </footer>
     </main>
 
+    <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.4.1/prism.min.js"></script>
     <script src="main.js"></script>
   </body>

@@ -36,19 +36,6 @@
 
 body {
   font: 125% / 1.5 'ESPI', serif;
-  padding: 2em 0;
-}
-
-section {
-  border-top: 1px solid silver;
-  margin-top: 60px;
-  padding-top: 20px;
-}
-
-h1 {
-  font-size: 1.6em;
-  line-height: 1.1;
-  font-family: 'ESPI Slab', sans-serif;
 }
 
 h3::before {
@@ -65,7 +52,7 @@ a:active {
   color: #E50050;
 }
 
-button {
+.button {
   background-color: #81c784;
   color: white;
   border: 0;
@@ -74,10 +61,14 @@ button {
   cursor: pointer;
   transition: 0.15s;
   display: inline-block;
-  margin: 1em 0;
 }
 
-button[aria-expanded="true"] {
+.button + .button {
+  margin-left: 1em;
+}
+
+.button[aria-expanded="true"],
+.button[aria-expanded="true"] {
   background-color: #27ae60;
 }
 
@@ -112,10 +103,23 @@ pre > code {
  * Layout
  * -------------------------------------------------------------------------- */
 
-.main {
+.container {
   max-width: 700px;
   margin: 0 auto;
   padding: 0 1em;
+}
+
+section {
+  padding: 60px 0;
+  border-bottom: 3px double deeppink;
+}
+
+.title {
+  font: 2em / 1.1 'ESPI Slab', sans-serif;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin-top: 0;
+  padding: 10px 0;
 }
 
 footer {
