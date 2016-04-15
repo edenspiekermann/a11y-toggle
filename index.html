@@ -69,6 +69,8 @@
 &lt;/div>
           </code></pre>
 
+          <p>Initial ARIA-specific attributes such as <code>aria-expanded</code>, <code>aria-hidden</code> and <code>aria-labelledby</code>, as well as <code>id</code> on the toggle element (if none already) are being added automatically.</p>
+
           <p>On the CSS Side, only hiding <code>aria-hidden</code> content is strictly necessary. It is also recommended to hide the button when JavaScript is disabled, by checking the presence of the <code>aria-controls</code> attribute for instance.</p>
 
           <pre class="language-css"><code>
