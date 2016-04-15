@@ -27,15 +27,21 @@
             <li><a href="#animations">Animations</a></li>
           </ul>
 
-          <p>Pure CSS toggles using the <a href="https://css-tricks.com/the-checkbox-hack/">checkbox hack</a> introduce some usability and accessibility problems.</p>
+          <button data-a11y-toggle="explanations" type="button" class="button">
+            Read more about why you might need this. »
+          </button>
 
-          <p>For starters, the checkbox hack relies on the <code>:checked</code> pseudo-class, which is <a href="http://quirksmode.org/css/selectors/mobile.html#t60">not supported everywhere</a>. For instance, BlackBerry browser, Opera Mini, Android Stock Browser and Firefox Android (amongst others) do not support this selector, making the whole thing broken.</p>
+          <div id="explanations">
+            <p>Pure CSS toggles using the <a href="https://css-tricks.com/the-checkbox-hack/">checkbox hack</a> introduce some usability and accessibility problems.</p>
 
-          <p>On top of that, in order to be fully accessible a content toggle needs some extra attributes that cannot be toggled without JavaScript. The toggle itself needs a <code>aria-controls</code> attribute linking to the expandable element, and a <code>aria-expanded</code> attribute describing its state (expanded or collapsed). The collapsed element itself needs the <code>aria-hidden</code> attribute when invisible.</p>
+            <p>For starters, the checkbox hack relies on the <code>:checked</code> pseudo-class, which is <a href="http://quirksmode.org/css/selectors/mobile.html#t60">not supported everywhere</a>. For instance, BlackBerry browser, Opera Mini, Android Stock Browser and Firefox Android (amongst others) do not support this selector, making the whole thing broken.</p>
 
-          <p><a href="https://github.com/edenspiekermann/a11y-toggle">a11y-toggle</a> takes care of all these considerations for you. Initial necessary attributes are being added by the script so you don’t even have to care about this.</p>
+            <p>On top of that, in order to be fully accessible a content toggle needs some extra attributes that cannot be toggled without JavaScript. The toggle itself needs a <code>aria-controls</code> attribute linking to the expandable element, and a <code>aria-expanded</code> attribute describing its state (expanded or collapsed). The collapsed element itself needs the <code>aria-hidden</code> attribute when invisible.</p>
 
-          <p><strong>No more excuse now. Make your toggles accessible.</strong></p>
+            <p><a href="https://github.com/edenspiekermann/a11y-toggle">a11y-toggle</a> takes care of all these considerations for you. Initial necessary attributes are being added by the script so you don’t even have to care about this.</p>
+
+            <p><strong>No more excuse now. Make your toggles accessible.</strong></p>
+          </div>
         </div>
       </section>
 
