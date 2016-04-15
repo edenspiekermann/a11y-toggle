@@ -135,6 +135,14 @@
 &lt;/div>
           </code></pre>
 
+          <p>Because of <a href="https://developer.mozilla.org/en-US/docs/Web/Events/click#Safari_Mobile">a nasty bug on iOS</a>, you have to add this rule to your stylesheet to make the toggle actually clickable. Apparently, no pointer means no events.</p>
+
+          <pre class="language-css"><code>
+[role="button"] {
+  cursor: pointer;
+} 
+          </code></pre>
+
           <p data-height="191" data-theme-id="0" data-slug-hash="XdEvvm" data-default-tab="result" data-user="HugoGiraudel" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/HugoGiraudel/pen/XdEvvm/">a11y-toggle — Non-button toggles</a> by Hugo Giraudel (<a href="http://codepen.io/HugoGiraudel">@HugoGiraudel</a>) on <a href="http://codepen.io">CodePen</a>.</p>
         </div>
       </section>
