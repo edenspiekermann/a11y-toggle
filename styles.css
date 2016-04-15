@@ -43,6 +43,10 @@ h3::before {
   color: #81c784;
 }
 
+iframe {
+  border-bottom: 1px solid;
+}
+
 a {
   color: #00b4f1;
 }
