@@ -25,8 +25,7 @@
     return null;
   }
 
-  function handleToggle (event) {
-    var toggle = getClosestToggle(event.target);
+  function handleToggle (toggle) {
     var target = toggle && targetsMap[toggle.getAttribute('aria-controls')];
 
     if (!target) {
@@ -70,11 +69,17 @@
     });
   });
 
-  document.addEventListener('click', handleToggle);
+  document.addEventListener('click', function (event) {
+    var toggle = getClosestToggle(event.target);
+    handleToggle(toggle);
+  });
+
   document.addEventListener('keyup', function (event) {
     if (event.which === 13 || event.which === 32) {
       var toggle = getClosestToggle(event.target);
-      if (toggle && toggle.getAttribute('role') === 'button') handleToggle(event);
+      if (toggle && toggle.getAttribute('role') === 'button') {
+        handleToggle(toggle);
+      }
     }
   });
 })();
