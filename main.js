@@ -34,7 +34,8 @@
       return acc;
     }, togglesMap);
 
-    $(Object.keys(togglesMap)).forEach(function (target) {
+    var targets = Object.keys(togglesMap);
+    targets.length && $(targets).forEach(function (target) {
       var toggles = togglesMap['#' + target.id];
       var isExpanded = target.hasAttribute('data-a11y-toggle-open');
       var labelledby = [];
