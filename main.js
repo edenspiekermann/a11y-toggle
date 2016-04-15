@@ -54,7 +54,7 @@
     });
   });
 
-  document.addEventListener('click', function (event) {
+  function handleToggle (event) {
     var toggle = getClosestToggle(event.target);
     var target = toggle && targetsMap[toggle.getAttribute('aria-controls')];
 
@@ -69,5 +69,13 @@
     toggles.forEach(function (toggle) {
       toggle.setAttribute('aria-expanded', !isExpanded);
     });
+  }
+
+  document.addEventListener('click', handleToggle);
+  document.addEventListener('keyup', function (event) {
+    if (event.which === 13 || event.which === 32) {
+      var toggle = getClosestToggle(event.target);
+      if (toggle && toggle.getAttribute('role') === 'button') handleToggle(event);
+    }
   });
 })();
