@@ -25,6 +25,7 @@
             <li><a href="#non-button-toggles">Non-button toggles</a></li>
             <li><a href="#multi-toggles">Multi toggles</a></li>
             <li><a href="#animations">Animations</a></li>
+            <li><a href="#connected-toggles">Connected toggles</a></li>
           </ul>
 
           <button data-a11y-toggle="explanations" type="button" class="button">
@@ -213,7 +214,67 @@
           </code></pre>
 
           <p data-height="191" data-theme-id="0" data-slug-hash="wGmVVY" data-default-tab="result" data-user="HugoGiraudel" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/HugoGiraudel/pen/wGmVVY/">a11y-toggle — Animations</a> by Hugo Giraudel (<a href="http://codepen.io/HugoGiraudel">@HugoGiraudel</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+        </div>
+      </section>
+
+      <section id="connected-toggles">
+        <div class="container">
+          <h2 class="title">Connected toggles</h2>
+
+          <p>The library does not provide out-of-the-box support for connected toggles, which are a set of toggles with only one expanded at any time.</p>
+
+          <p>However with a tiny bit of JavaScript, it is possible to leverage the capabilities of the library to add this feature.</p>
+
+          <pre class="language-html"><code>
+&lt;div class="connected-toggles">
+  &lt;button data-a11y-toggle="target-1" type="button">
+    Toggle content 1 »
+  &lt;/button>
+
+  &lt;button data-a11y-toggle="target-2" type="button">
+    Toggle content 2 »
+  &lt;/button>
+
+  &lt;div id="target-1">
+    Some content (1)… 
+  &lt;/div>
+  
+  &lt;div id="target-2">
+    Some content (2)…
+  &lt;/div>
+&lt;/div>
+          </code></pre>
+
+          <p>The trick is to collapse all targets in the set when one is being activated, except this one. The JavaScript snippet to achieve that should be pretty straight-forward.</p>
+
+          <pre class="language-javascript"><code>
+function collapse (toggle) {
+  var id = toggle.getAttribute('data-a11y-toggle');
+  var collapsibleBox = document.getElementById(id);
+  collapsibleBox.setAttribute('aria-hidden', true);
+  toggle.setAttribute('aria-expanded', false);
+}
+
+function collapseAll (event) {
+  toggles
+    .filter(function (toggle) {
+      return toggle !== event.target;
+    })
+    .forEach(collapse);
+}
+
+var toggles = Array.prototype.slice.call(
+  document.querySelectorAll('.connected-toggles [data-a11y-toggle]')
+);
+
+toggles.forEach(function (toggle) {
+  toggle.addEventListener('click', collapseAll);
+});
+          </code></pre>
+
+          <p><strong>Beware!</strong> a11y-toggle is not a library to build tabs. While it certainly is possible to do so, remember that tabs imply other accessibility concerns which should be taken care of.</p>
+
+          <p data-height="191" data-theme-id="0" data-slug-hash="NNBmpR" data-default-tab="result" data-user="HugoGiraudel" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/HugoGiraudel/pen/NNBmpR/">a11y-toggle — Connected toggles</a> by Hugo Giraudel (<a href="http://codepen.io/HugoGiraudel">@HugoGiraudel</a>) on <a href="http://codepen.io">CodePen</a>.</p>
         </div>
       </section>
 
