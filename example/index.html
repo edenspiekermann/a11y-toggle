@@ -86,6 +86,8 @@
   display: none;
 }
           </code></pre>
+          
+          <p>Note: globally hiding elements with <code>[aria-hidden="true"]</code> can have rendering issues with third party integrations. Only known to date is with Google Maps, in which it prevents the map tiles to render. Therefore <a href="https://github.com/edenspiekermann/a11y-toggle/issues/30">it needs to be resetted inside a Google Maps container</a>.</p>
 
           <p data-height="191" data-theme-id="0" data-slug-hash="MyVNdN" data-default-tab="result" data-user="HugoGiraudel" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/HugoGiraudel/pen/MyVNdN/">a11y-toggle — Basic example</a> by Hugo Giraudel (<a href="http://codepen.io/HugoGiraudel">@HugoGiraudel</a>) on <a href="http://codepen.io">CodePen</a>.</p>
         </div>
