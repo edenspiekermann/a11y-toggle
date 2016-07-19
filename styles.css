@@ -7,6 +7,20 @@
   display: none;
 }
 
+/**
+ * 1. Globally hiding elements with [aria-hidden="true"] can have rendering
+ *    issues with third party integrations. Only known to date is with Google
+ *    Maps, in which it prevents the map tiles to render. Therefore it needs to
+ *    be resetted inside a Google Maps container.
+ *    See: https://github.com/edenspiekermann/a11y-toggle/issues/30
+ * 2. Fallback value in case the `initial` value is not supported.
+ *    See: http://caniuse.com/#feat=css-initial-value
+ */
+.gm-style [aria-hidden='true'] { /* 1 */
+  display: block; /* 2 */
+  display: initial;
+}
+
 
 /* -------------------------------------------------------------------------- *\
  * Base stuff
