@@ -294,6 +294,13 @@ toggles.forEach(function (toggle) {
           <pre class="language-javascript"><code>
 window.a11yToggle();
           </code></pre>
+
+          <p>If you do not want to reinitialise everything, you can pass a context to the <code>a11yToggle</code> function which will be used as a root for <code>.querySelectorAll</code>.
+
+          <pre class="language-javascript"><code>
+var newContainer = document.getElementById('new-container');
+window.a11yToggle(newContainer);
+          </code></pre>
         </div>
       </section>
 
