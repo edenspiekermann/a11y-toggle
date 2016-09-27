@@ -26,6 +26,7 @@
             <li><a href="#multi-toggles">Multi toggles</a></li>
             <li><a href="#animations">Animations</a></li>
             <li><a href="#connected-toggles">Connected toggles</a></li>
+            <li><a href="#dynamically-injected-toggles">Dynamically injected toggles</a></li>
           </ul>
 
           <button data-a11y-toggle="explanations" type="button" class="button">
@@ -279,6 +280,20 @@ toggles.forEach(function (toggle) {
           <p><strong>Beware!</strong> a11y-toggle is not a library to build tabs. While it certainly is possible to do so, remember that tabs imply other accessibility concerns which should be taken care of.</p>
 
           <p data-height="191" data-theme-id="0" data-slug-hash="NNBmpR" data-default-tab="result" data-user="HugoGiraudel" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/HugoGiraudel/pen/NNBmpR/">a11y-toggle — Connected toggles</a> by Hugo Giraudel (<a href="http://codepen.io/HugoGiraudel">@HugoGiraudel</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+        </div>
+      </section>
+
+      <section id="dynamically-injected-toggles">
+        <div class="container">
+          <h2 class="title">Dynamically injected toggles</h2>
+
+          <p>a11y-toggle fires once when the DOM is fully loaded (<code>DOMContentLoaded</code>). You will have to relaunch it if you dynamically add new toggles with JavaScript.</p>
+
+          <p>Thankfully, a11y-toggle exposes an <code>a11yToggle</code> function on the global object.</p>
+
+          <pre class="language-javascript"><code>
+window.a11yToggle();
+          </code></pre>
         </div>
       </section>
 

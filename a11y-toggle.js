@@ -41,7 +41,7 @@
     });
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
+  var initA11yToggle = function () {
     togglesMap = $('[data-a11y-toggle]').reduce(function (acc, toggle) {
       var selector = '#' + toggle.getAttribute('data-a11y-toggle');
       acc[selector] = acc[selector] || [];
@@ -67,7 +67,9 @@
 
       targetsMap[target.id] = target;
     });
-  });
+  };
+
+  document.addEventListener('DOMContentLoaded', initA11yToggle);
 
   document.addEventListener('click', function (event) {
     var toggle = getClosestToggle(event.target);
@@ -82,4 +84,6 @@
       }
     }
   });
+
+  window && (window.a11yToggle = initA11yToggle);
 })();
