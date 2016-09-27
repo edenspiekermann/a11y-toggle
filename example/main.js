@@ -5,8 +5,10 @@
   var togglesMap = {};
   var targetsMap = {};
 
-  function $ (selector) {
-    return Array.prototype.slice.call(document.querySelectorAll(selector));
+  function $ (selector, context) {
+    return Array.prototype.slice.call(
+      (context || document).querySelectorAll(selector)
+    );
   }
 
   function getClosestToggle (element) {
@@ -41,8 +43,8 @@
     });
   }
 
-  var initA11yToggle = function () {
-    togglesMap = $('[data-a11y-toggle]').reduce(function (acc, toggle) {
+  var initA11yToggle = function (context) {
+    togglesMap = $('[data-a11y-toggle]', context).reduce(function (acc, toggle) {
       var selector = '#' + toggle.getAttribute('data-a11y-toggle');
       acc[selector] = acc[selector] || [];
       acc[selector].push(toggle);
@@ -69,7 +71,9 @@
     });
   };
 
-  document.addEventListener('DOMContentLoaded', initA11yToggle);
+  document.addEventListener('DOMContentLoaded', function () {
+    initA11yToggle();
+  });
 
   document.addEventListener('click', function (event) {
     var toggle = getClosestToggle(event.target);
@@ -85,5 +89,5 @@
     }
   });
 
-  window && window.a11yToggle = initA11yToggle;
+  window && (window.a11yToggle = initA11yToggle);
 })();
