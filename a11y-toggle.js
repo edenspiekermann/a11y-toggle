@@ -53,14 +53,10 @@
 		  extraClasses = toggle.getAttribute('data-class') || "";
 		
 		
-	  console.log(selector);
-		
 	  if (classException) {
 		  // seector
 		  var targetEl = document.querySelector(selector);
 		  
-		  
-		  console.log(targetEl.id)
 		  
 		  if (!targetEl.id) {
 			  targetEl.id = '_' + Math.random().toString(36).substr(2, 9);
@@ -69,7 +65,6 @@
 		  selector = ("#" + targetEl.getAttribute('id'));
 		  toggle.setAttribute('data-a11y-toggle', targetEl.getAttribute('id')); // overwrite original `[data-a11y-toggle]`
 		  
-		  console.log(selector);
 	  }
 		
       acc[selector] = acc[selector] || [];
