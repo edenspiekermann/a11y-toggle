@@ -45,7 +45,33 @@
 
   var initA11yToggle = function (context) {
     togglesMap = $('[data-a11y-toggle]', context).reduce(function (acc, toggle) {
-      var selector = '#' + toggle.getAttribute('data-a11y-toggle');
+		
+		
+		
+      var classException = toggle.getAttribute('data-target') || false, 
+		  selector = classException || "#" + toggle.getAttribute('data-a11y-toggle'),
+		  extraClasses = toggle.getAttribute('data-class') || "";
+		
+		
+	  console.log(selector);
+		
+	  if (classException) {
+		  // seector
+		  var targetEl = document.querySelector(selector);
+		  
+		  
+		  console.log(targetEl.id)
+		  
+		  if (!targetEl.id) {
+			  targetEl.id = '_' + Math.random().toString(36).substr(2, 9);
+		  }
+		  
+		  selector = ("#" + targetEl.getAttribute('id'));
+		  toggle.setAttribute('data-a11y-toggle', targetEl.getAttribute('id')); // overwrite original `[data-a11y-toggle]`
+		  
+		  console.log(selector);
+	  }
+		
       acc[selector] = acc[selector] || [];
       acc[selector].push(toggle);
       return acc;
