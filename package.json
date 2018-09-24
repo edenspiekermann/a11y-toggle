@@ -1,11 +1,11 @@
 {
   "name": "a11y-toggle",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "A tiny script to make accessible content toggles.",
-  "homepage": "https://github.com/edenspiekermann/a11y-toggle",
+  "homepage": "https://github.com/nicetransition/a11y-toggle",
   "repository": {
     "type": "git",
-    "url": "https://github.com/edenspiekermann/a11y-toggle.git"
+    "url": "https://github.com/nicetransition/a11y-toggle.git"
   },
   "main": "a11y-toggle.js",
   "keywords": [
