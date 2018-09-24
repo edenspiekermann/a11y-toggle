@@ -12,6 +12,7 @@
   <body>
     <main class="main" id="main" aria-label="Content">
 
+
       <section>
         <div class="container">
           <h1 class="title">A11y Toggle</h1>
@@ -304,11 +305,72 @@ window.a11yToggle(newContainer);
         </div>
       </section>
 
-      <footer role="contentinfo">
+
+      
+      <section id="connected-toggles">
         <div class="container">
-          &copy;&nbsp;2016 <a href="http://edenspiekermann.com">Edenspiekermann</a>
+          <h2 class="title">Class-based toggles</h2>
+
+          <p>The library supports CSS-based selectors to generate ID's for targeted element.</p>
+
+          <p>
+            The <code>[data-target]</code> attribute looks at the target and identifies if elemnt has an <code>id</code> or not. If it does not have an <code>id</code>, it generates one and updates the <code>[data-a11y-toggle]</code> with the generated <code>id</code>.
+          </p>
+
+          <p>
+            Add <code>data-a11y-toggle</code> (with no value) and <code>data-target</code> with the value equal to the selector you are targeting in your toggle button. 
+          </p>
+
+
+          <pre class="language-html"><code>
+&lt;div class="connected-toggles">
+  &lt;button data-a11y-toggle data-target="div + div" type="button">
+    Toggle &quot;div + div&quot;
+  &lt;/button>
+
+  &lt;div>
+    I am not the target
+  &lt;/div>
+  
+  &lt;div>
+    I am the target from the selector in <code>data-target</code>
+  &lt;/div>
+&lt;/div>
+          </code></pre>
+
+         
         </div>
-      </footer>
+      </section>
+      <section id="connected-toggles">
+        <div class="container">
+          <h2 class="title">Next Item Target toggles</h2>
+
+          <p>The library supports dynamically generated queries to &quot;next siblings&quot; in the DOM Structure. </p>
+
+          <p>
+            The <code>[data-target]</code> equal to &quot;next&quot;  looks at the next element in the DOM structure and identifies if elemnt has an <code>id</code> or not. If it does not have an <code>id</code>, it then generates one and updates the <code>[data-a11y-toggle]</code> with the generated <code>id</code>.
+          </p>
+
+          <p>
+            Add <code>data-a11y-toggle</code> (with no value) and <code>data-target="next"</code> 
+          </p>
+
+
+          <pre class="language-html"><code>
+&lt;div class="connected-toggles">
+  &lt;button data-a11y-toggle data-target="next" type="button">
+    Toggle &quot;div + div&quot;
+  &lt;/button>
+  
+  &lt;div>
+    I am next sibling in the DOM and am the target of the toggle
+  &lt;/div>
+&lt;/div>
+          </code></pre>
+
+         
+        </div>
+      </section>
     </main>
 
     <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
