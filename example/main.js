@@ -45,33 +45,33 @@
 
   var initA11yToggle = function (context) {
     togglesMap = $('[data-a11y-toggle]', context).reduce(function (acc, toggle) {
-    
+		
       var classException = toggle.getAttribute('data-target') || false, 
-      selector = classException || "#" + toggle.getAttribute('data-a11y-toggle'),
-      extraClasses = toggle.getAttribute('data-class') || "";
-    
-    
-    if (classException) {
-      if (classException == "next") {
-        var tempId = '_' + Math.random().toString(36).substr(2, 9),
-          selector = "[data-tempid='" + tempId + "'] + *";
-        toggle.setAttribute('data-tempid', tempId);
-        toggle.setAttribute('data-target',  selector); // `[data-target]` with new id
-      }
-      
-      // selector
-      var targetEl = document.querySelector(selector);
+		  selector = classException || "#" + toggle.getAttribute('data-a11y-toggle'),
+		  extraClasses = toggle.getAttribute('data-class') || "";
+		
+		
+	  if (classException) {
+		  if (classException == "next") {
+			  var tempId = '_' + Math.random().toString(36).substr(2, 9),
+				  selector = "[data-tempid='" + tempId + "'] + *";
+			  toggle.setAttribute('data-tempid', tempId);
+			  toggle.setAttribute('data-target',  selector); // `[data-target]` with new id
+		  }
+		  
+		  // selector
+		  var targetEl = document.querySelector(selector);
 
 
-      if (!targetEl.id) {
-        targetEl.id = '_' + Math.random().toString(36).substr(2, 9);
-      }
+		  if (!targetEl.id) {
+			  targetEl.id = '_' + Math.random().toString(36).substr(2, 9);
+		  }
 
-      selector = ("#" + targetEl.getAttribute('id'));
-      toggle.setAttribute('data-a11y-toggle', targetEl.getAttribute('id')); // overwrite original `[data-a11y-toggle]`
-      
-    }
-    
+		  selector = ("#" + targetEl.getAttribute('id'));
+		  toggle.setAttribute('data-a11y-toggle', targetEl.getAttribute('id')); // overwrite original `[data-a11y-toggle]`
+		  
+	  }
+		
       acc[selector] = acc[selector] || [];
       acc[selector].push(toggle);
       return acc;
