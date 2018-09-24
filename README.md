@@ -27,7 +27,7 @@ npm test
 
 ## Deploy example
 
-The [example page](http://edenspiekermann.github.io/a11y-toggle/) is deployed through [GitHub Pages](https://pages.github.com/). 
+The [example page](http://nicetransition.github.io/a11y-toggle/) is deployed through [GitHub Pages](https://pages.github.com/). 
 
 ```
 npm run deploy
