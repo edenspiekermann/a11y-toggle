@@ -3,7 +3,7 @@
   "description": "A tiny script to make accessible content toggles.",
   "main": "a11y-toggle.js",
   "authors": [
-    "Hugo Giraudel <h.giraudel@de.edenspiekermann.com> (www.edenspiekermann.com/people/hugo-giraudel)"
+    "Kitty Giraudel"
   ],
   "license": "MIT",
   "keywords": [
